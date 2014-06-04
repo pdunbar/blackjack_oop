@@ -15,10 +15,17 @@ class Game
       answer = gets.chomp().downcase
       if answer == "h"
         player_hand.deal_card
-        puts "Your score is #{@player_hand.score}"
+        puts player_hand.hand[-1]
+        puts "Your score is: #{@player_hand.score}"
+        puts
+        if @player_hand.score > 21
+          puts "YOU BUST!"
+          false
+        end
       elsif answer == "s"
-        puts "you stood at #{player_hand.score}"
-        break
+        puts "You stood at #{player_hand.score}"
+        puts
+        false
       else
         puts "please type H or S"
       end
@@ -26,10 +33,11 @@ class Game
   end
 
   def dealer_hit
-    while @dealer_hand.score < 17
+    while @dealer_hand.score < 17 && @player_hand.score <= 21
       @dealer_hand.deal_card
+      puts "Dealer hits, and gets: #{@dealer_hand.hand[-1]}"
     end
-    if @dealer_hand.score = 21
+    if @dealer_hand.score == 21
       puts "Dealer gets blackjack!"
     elsif @dealer_hand.score < 21
       puts "Dealer stands at #{@dealer_hand.score}"
@@ -39,18 +47,24 @@ class Game
   end
 
   def start
-    @player_hand.deal_card.deal_card
-    @dealer_hand.deal_card.deal_card
-    puts "Your hand is: "
-    puts @player_hand.hand
-    puts "Dealer hand is: "
-    puts @dealer_hand.hand
     puts "Your score is: #{@player_hand.score}"
+    puts @player_hand.hand
+    puts
+    puts "Dealer hand is: "
+    puts @dealer_hand.hand[1]
+    puts "[ ]"
+    puts
+
   end
 
   def winner
-    if @player_hand.score > @dealer_hand.score
+    if @dealer_hand.score > 21 && @player_hand.score <= 21
+      puts "You Win!"
+    elsif @player_hand.score >= @dealer_hand.score && @player_hand.score <= 21
       puts "You win!"
+    elsif
+      @player_hand == @dealer_hand
+      puts "Tie"
     else
       puts "Dealer wins!"
     end

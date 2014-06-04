@@ -7,7 +7,7 @@ class Card
   end
 
   def to_s
-    value.to_s + ' ' + suit
+    value.to_s + ' of ' + suit
   end
 
 end

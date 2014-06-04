@@ -1,18 +1,14 @@
 class Hand
-  attr_reader :hand, :score
+  attr_reader :hand, :score, :deck
 
   def initialize(deck)
-    @hand = []
     @deck = deck
-
-    2.times do
-      @hand << deck.shift
-    end
-    @hand
+    @hand = []
+    2.times do deal_card end
   end
 
   def deal_card
-    @hand << @deck.shift
+    @hand << deck.shift
   end
 
 
@@ -26,11 +22,12 @@ class Hand
         ace_counter += 1
         score += 11
       else
-        @score += card.value
+        score += card.value
       end
     end
     while ace_counter>0 && score > 21
       score -= 10
+      ace_counter -= 1
     end
     @score = score
   end
