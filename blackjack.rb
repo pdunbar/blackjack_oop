@@ -8,8 +8,8 @@ puts "--"
 
 game = Game.new()
 game.start
-game.player_hit
 game.dealer_hit
+game.player_hit
 game.winner
 
 

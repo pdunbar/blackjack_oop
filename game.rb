@@ -20,12 +20,12 @@ class Game
         puts
         if @player_hand.score > 21
           puts "YOU BUST!"
-          false
+          return false
         end
       elsif answer == "s"
         puts "You stood at #{player_hand.score}"
         puts
-        false
+        return false
       else
         puts "please type H or S"
       end
@@ -52,7 +52,7 @@ class Game
     puts
     puts "Dealer hand is: "
     puts @dealer_hand.hand[1]
-    puts "[ ]"
+    puts "[?]"
     puts
 
   end
